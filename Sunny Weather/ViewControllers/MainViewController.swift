@@ -66,6 +66,7 @@ class MainViewController: UIViewController {
         searchBar.showsCancelButton = true
         searchBar.setShowsCancelButton(true, animated: true)
         searchBar.tintColor = .white
+        searchBar.searchTextField.textColor = .white
  
         return searchBar
     }()
@@ -197,7 +198,6 @@ class MainViewController: UIViewController {
             .observe(on: MainScheduler.instance)
             .subscribe { [ weak self ] _ in
                 self?.viewModel.getCityInfo(with: self?.searchBar.text)
-                self?.searchBar.resignFirstResponder()
             }.disposed(by: disposeBag)
         
         searchBar.rx.cancelButtonClicked.subscribe { [ weak self ] event in
