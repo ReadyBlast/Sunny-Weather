@@ -20,14 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         if let window {
-//            let router = ViperRouter()
-//            let controller = router.getViperVC()
-//            window.rootViewController = controller
-//            window.makeKeyAndVisible()
-
             let coordinator = Coordinator()
             coordinator.start(in: window, networkService: NetworkService())
-
         }
         
     }

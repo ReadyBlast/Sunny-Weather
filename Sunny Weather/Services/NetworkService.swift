@@ -14,7 +14,14 @@ private extension String {
      static let cityInfoURL = "https://api.openweathermap.org/geo/1.0/direct"
      static let weatherURL = "https://api.openweathermap.org/data/2.5/weather"
     
-    static let apiKey = "6f12f43f81dcd59e47dfd4ec1bdc576c"
+    static let apiKeyValue = "6f12f43f81dcd59e47dfd4ec1bdc576c"
+    
+    static let apiKeyName = "appid"
+    static let unitsNameKey = "units"
+    static let unitsValue = "metric"
+    static let longitudeNameKey = "lon"
+    static let latitudeNameKey = "lat"
+    static let cityNameKey = "q"
 }
 
 enum HTTPType: String {
@@ -59,8 +66,8 @@ final class NetworkService: INetworkService {
                              completion: @escaping (Data) -> Void
     ) throws {
         var urlComponents = URLComponents(string: .cityInfoURL)
-        let city = URLQueryItem(name: "q", value: city)
-        let apiKey = URLQueryItem(name: "appid", value: .apiKey)
+        let city = URLQueryItem(name: .cityNameKey, value: city)
+        let apiKey = URLQueryItem(name: .apiKeyName, value: .apiKeyValue)
         urlComponents?.queryItems = [city, apiKey]
         guard let url = urlComponents?.url else {
             throw NSError.networkError
@@ -92,10 +99,10 @@ final class NetworkService: INetworkService {
                              completion: @escaping (Data) -> Void
     ) throws {
         var urlComponents = URLComponents(string: .weatherURL)
-        let lat = URLQueryItem(name: "lat", value: "\(latitude)")
-        let lon = URLQueryItem(name: "lon", value: "\(longitude)")
-        let appKey = URLQueryItem(name: "appid", value: .apiKey)
-        let units = URLQueryItem(name: "units", value: "metric")
+        let lat = URLQueryItem(name: .latitudeNameKey, value: "\(latitude)")
+        let lon = URLQueryItem(name: .longitudeNameKey, value: "\(longitude)")
+        let appKey = URLQueryItem(name: .apiKeyName, value: .apiKeyValue)
+        let units = URLQueryItem(name: .unitsNameKey, value: .unitsValue)
         urlComponents?.queryItems = [lon, lat, appKey, units]
         guard let url = urlComponents?.url else {
             throw NSError.networkError
