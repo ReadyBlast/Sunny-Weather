@@ -14,7 +14,8 @@ private extension String {
      static let cityInfoURL = "https://api.openweathermap.org/geo/1.0/direct"
      static let weatherURL = "https://api.openweathermap.org/data/2.5/weather"
     
-    static let apiKeyValue = "6f12f43f81dcd59e47dfd4ec1bdc576c"
+//    insert your apikey here
+    static let apiKeyValue = ""
     
     static let apiKeyName = "appid"
     static let unitsNameKey = "units"
